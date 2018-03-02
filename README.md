@@ -16,9 +16,9 @@ The MySQLdb Python module is required to connect to a MySQL server.
 
 ## Setup
 
-#### Database Creation
+### Database Creation
 
-#### Sensor Configuration
+### Sensor Configuration
 Change the variables in `sensor_vars.py` to connect to a database.
 
 **HOSTNAME** gives a name to the sensor. It does not need to be the machine's actual hostname. If it is left as None the default value will be 'Anonymous' in the database.
@@ -35,9 +35,13 @@ Change the variables in `sensor_vars.py` to connect to a database.
 
 #### Cron
 Set up a crontab with root to move the log file to the sensor's directory.
-`sudo crontab -e`
-`0 * * * * cp /var/log/auth.log /opt/Log-Sensor/`
+```
+sudo crontab -e
+0 * * * * cp /var/log/auth.log /opt/Log-Sensor/
+```
 
 Set a user crontab to run the sensor update.
-`crontab -e`
-`1 * * * * cd /opt/Log-Sensor/ && python get_stats.py`
+```
+crontab -e
+1 * * * * cd /opt/Log-Sensor/ && python get_stats.py
+```
