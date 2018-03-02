@@ -5,14 +5,7 @@
 import MySQLdb
 import re
 import datetime
-
-HOSTNAME =  None
-DB_URL =    "[secure]"
-DB_USER =   "[secure]"
-DB_PASSWD = "[secure]"
-DB_TABLE =  "log_mapper"
-AUTH_FILE = "auth.log"
-LOG_SUCESSES = None    # Set to *anything* if you want to log successful logins
+import sensor_vars
 
 #
 # Pad numbers with 0s
@@ -34,7 +27,7 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
     if ip_addr is None or timestamp is None:
         return
 
-    base_columns = "INSERT INTO attempts ("
+    base_columns = "INSERT IGNORE INTO attempts ("
     base_values = " VALUES ("
 
     if hostname:
@@ -52,7 +45,7 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
         base_values += "'{}')".format(timestamp)
     base_cmd = base_columns + base_values
 
-    markers_cmd = "INSERT IF NOT EXISTS INTO markers (ip) VALUES ('{}');".format(ip_addr)
+    markers_cmd = "INSERT IGNORE INTO markers (ip) VALUES ('{}');".format(ip_addr)
     print(base_cmd)
     print(markers_cmd)
     cursor.execute(base_cmd)
