@@ -33,7 +33,7 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
     if ip_addr is None or timestamp is None:
         return
 
-    base_columns = "INSERT IGNORE INTO attempts ("
+    base_columns = "INSERT INTO attempts ("
     base_values = " VALUES ("
 
     if hostname:
@@ -51,7 +51,14 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
         base_values += "'{}')".format(timestamp)
     base_cmd = base_columns + base_values
 
-    markers_cmd = "INSERT IGNORE INTO markers (ip) VALUES ('{}');".format(ip_addr)
+    end_cmd = " WHERE NOT EXISTS (SELECT ip FROM {} WHERE ip = '{}') LIMIT 1;"
+
+    markers_cmd = "INSERT INTO markers (ip) VALUES ('{}')".format(ip_addr)
+
+    base_cmd += end_cmd.format("attempts", ip_addr)
+    markers_cmd += end_cmd.format("markers", ip_addr)
+
+
     print(base_cmd)
     print(markers_cmd)
     cursor.execute(base_cmd)
