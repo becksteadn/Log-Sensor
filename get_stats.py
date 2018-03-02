@@ -5,7 +5,13 @@
 import MySQLdb
 import re
 import datetime
-import sensor_vars
+from sensor_vars import HOSTNAME
+from sensor_vars import DB_URL
+from sensor_vars import DB_USER
+from sensor_vars import DB_PASSWD
+from sensor_vars import DB_TABLE
+from sensor_vars import AUTH_FILE
+from sensor_vars import LOG_SUCESSES
 
 #
 # Pad numbers with 0s
