@@ -51,18 +51,18 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
         base_values += "'{}')".format(timestamp)
     base_cmd = base_columns + base_values
 
-    end_cmd = " WHERE NOT EXISTS (SELECT ip FROM {} WHERE ip = '{}') LIMIT 1;"
-
     markers_cmd = "INSERT INTO markers (ip) VALUES ('{}')".format(ip_addr)
 
-    base_cmd += end_cmd.format("attempts", ip_addr)
-    markers_cmd += end_cmd.format("markers", ip_addr)
-
-
-    print(base_cmd)
-    print(markers_cmd)
-    cursor.execute(base_cmd)
-    cursor.execute(markers_cmd)
+    #print(base_cmd)
+    #print(markers_cmd)
+    try:
+        cursor.execute(base_cmd)
+    except:
+        pass
+    try:
+        cursor.execute(markers_cmd)
+    except:
+        pass
 
 
 #
