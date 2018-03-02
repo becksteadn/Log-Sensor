@@ -45,24 +45,24 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
 
     if success_value == 0 or success_value == 1:
         base_columns += "stamp, success)"
-        base_values += "'{}', b'{}')".format(timestamp, success_value)
+        base_values += "'{}', {});".format(timestamp, success_value)
     else:
         base_columns += "stamp)"
-        base_values += "'{}')".format(timestamp)
+        base_values += "'{}');".format(timestamp)
     base_cmd = base_columns + base_values
 
-    markers_cmd = "INSERT INTO markers (ip) VALUES ('{}')".format(ip_addr)
+    markers_cmd = "INSERT INTO markers (ip) VALUES ('{}');".format(ip_addr)
 
-    #print(base_cmd)
-    #print(markers_cmd)
-    try:
-        cursor.execute(base_cmd)
-    except:
-        pass
-    try:
-        cursor.execute(markers_cmd)
-    except:
-        pass
+    print(base_cmd)
+    print(markers_cmd)
+     try:
+         cursor.execute(base_cmd)
+     except:
+         pass
+     try:
+         cursor.execute(markers_cmd)
+     except:
+         pass
 
 
 #
@@ -154,5 +154,6 @@ if __name__ == "__main__":
     for atm in attempts:
         insert_attempt(cur, HOSTNAME, atm[0], atm[1], atm[2])
 
-    cur.close()
+# Write changes and disconnect from server
+    db.commit()
     db.close()
