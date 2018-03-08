@@ -55,14 +55,14 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
 
     print(base_cmd)
     print(markers_cmd)
-     try:
-         cursor.execute(base_cmd)
-     except:
-         pass
-     try:
-         cursor.execute(markers_cmd)
-     except:
-         pass
+    try:
+        cursor.execute(base_cmd)
+    except:
+        pass
+    try:
+        cursor.execute(markers_cmd)
+    except:
+        pass
 
 
 #
@@ -94,6 +94,8 @@ def get_attempts(filename, atm_list):
             elif "accept" in line_lower:
                 if LOG_SUCESSES:
                     atm_success = 1
+                else:
+                    continue
             else:
                 continue
 
