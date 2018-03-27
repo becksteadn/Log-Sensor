@@ -18,6 +18,7 @@ The MySQLdb Python module is required to connect to a MySQL server.
 
 ### Database Creation
 
+
 ### Sensor Configuration
 Change the variables in `sensor_vars.py` to connect to a database.
 
@@ -33,15 +34,15 @@ Change the variables in `sensor_vars.py` to connect to a database.
 
 **LOG_SUCCESSES** does not log successful login attempts so that they are not mapped. If you wish to include successful logins, set this variable to anything except None and 0.
 
+### Update Script Configuration
+**LS_USER** user the script should run as.
+
+**LS_LOC** location the sensor was installed at.
+
+
 #### Cron
-Set up a crontab with root to move the log file to the sensor's directory.
+Set a root crontab to run the sensor update.
 ```
 sudo crontab -e
-0 * * * * cp /var/log/auth.log /opt/Log-Sensor/
-```
-
-Set a user crontab to run the sensor update.
-```
-crontab -e
-1 * * * * cd /opt/Log-Sensor/ && python get_stats.py
+0 * * * * /opt/Log-Sensor/update.sh
 ```
