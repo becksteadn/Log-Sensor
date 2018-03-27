@@ -1,4 +1,4 @@
-HOSTNAME =  None
+HOSTNAME =  None        # Helpful if set to location or description
 DB_URL =    "[secure]"
 DB_USER =   "[secure]"
 DB_PASSWD = "[secure]"
