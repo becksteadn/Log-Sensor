@@ -88,7 +88,8 @@ def get_attempts(filename, atm_list):
 
 # Determine success based on keywords
             line_lower = line.lower()
-            fail_keywords = ["fail", "invalid", "preauth"]
+            #fail_keywords = ["fail"]
+            fail_keywords = ["bye", "thank"]
             if any(elm in line_lower for elm in fail_keywords):
                 atm_success = 0
             elif "accept" in line_lower:

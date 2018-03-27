@@ -1,5 +1,6 @@
 # Log Sensor Specific
 *.log
+sensor_vars.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
