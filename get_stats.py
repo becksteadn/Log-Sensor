@@ -53,8 +53,8 @@ def insert_attempt(cursor, hostname, ip_addr, timestamp, success_value):
 
     markers_cmd = "INSERT INTO markers (ip) VALUES ('{}');".format(ip_addr)
 
-    print(base_cmd)
-    print(markers_cmd)
+    #print(base_cmd)
+    #print(markers_cmd)
     try:
         cursor.execute(base_cmd)
     except:
