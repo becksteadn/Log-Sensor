@@ -3,7 +3,7 @@ Parse log file and send attempted logins to MySQL server
 
 ## Introduction
 
-When I saw a huge amount of failed login attempts in my SSH logs, I wanted a way to get more information. I started out only mapping IPs using geolocation data and now the map is more interactive with links to Shodan and more statistics. This project is made up of a server and sensor, both of which use the same SQL database. I also created a self-contained version here though it is not maintained.
+When I saw a huge amount of failed login attempts in my SSH logs, I wanted a way to get more information. I started out only mapping IPs using geolocation data and now the map is more interactive with links to Shodan and more statistics. This project is made up of a [server](https://github.com/becksteadn/Mapper-Server) and sensor, both of which use the same SQL database. I also created a self-contained version [here](https://github.com/becksteadn/Log-Mapper) though it is not maintained.
 
 ## Requirements
 The MySQLdb Python module is required to connect to a MySQL server.
@@ -46,7 +46,7 @@ Change the variables in `sensor_vars.py` to connect to a database.
 **LS_LOC** location the sensor was installed at.
 
 
-#### Cron
+### Cron
 
 Set a root crontab to run the sensor update.
 ```
