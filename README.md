@@ -55,3 +55,5 @@ Set a root crontab to run the sensor update.
 sudo crontab -e
 0 * * * * /opt/Log-Sensor/update.sh
 ```
+
+Change the location from `/opt/` if you cloned it somewhere else.
