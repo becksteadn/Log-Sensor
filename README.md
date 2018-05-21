@@ -18,6 +18,8 @@ The MySQLdb Python module is required to connect to a MySQL server.
 
 **macOS** can install it using [these steps](https://stackoverflow.com/questions/1448429/how-to-install-mysqldb-python-data-access-library-to-mysql-on-mac-os-x#1448476)
 
+**Amazon Linux** can install it with `sudo yum install mysql-devel python-devel MySQL-python`
+
 ## Setup
 
 ### Database Creation
