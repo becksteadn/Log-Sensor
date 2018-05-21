@@ -1,6 +1,10 @@
 # Log-Sensor
 Parse log file and send attempted logins to MySQL server
 
+## Introduction
+
+When I saw a huge amount of failed login attempts in my SSH logs, I wanted a way to get more information. I started out only mapping IPs using geolocation data and now the map is more interactive with links to Shodan and more statistics. This project is made up of a server and sensor, both of which use the same SQL database. I also created a self-contained version here though it is not maintained.
+
 ## Requirements
 The MySQLdb Python module is required to connect to a MySQL server.
 
@@ -18,6 +22,7 @@ The MySQLdb Python module is required to connect to a MySQL server.
 
 ### Database Creation
 
+This is the same database as referenced in the [Mapper Server](https://github.com/becksteadn/Mapper-Server/blob/master/README.md#database-configuration) documentation.
 
 ### Sensor Configuration
 Change the variables in `sensor_vars.py` to connect to a database.
@@ -35,12 +40,14 @@ Change the variables in `sensor_vars.py` to connect to a database.
 **LOG_SUCCESSES** does not log successful login attempts so that they are not mapped. If you wish to include successful logins, set this variable to anything except None and 0.
 
 ### Update Script Configuration
+
 **LS_USER** user the script should run as.
 
 **LS_LOC** location the sensor was installed at.
 
 
 #### Cron
+
 Set a root crontab to run the sensor update.
 ```
 sudo crontab -e
